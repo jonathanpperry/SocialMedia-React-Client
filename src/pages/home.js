@@ -29,7 +29,7 @@ export class home extends Component {
           {recentScreamsMarkup}
         </Grid>
         <Grid item sm={4} xs={12}>
-          <p>Content...</p>
+          <p>Profile...</p>
         </Grid>
       </Grid>
     );
