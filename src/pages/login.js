@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
+import AppIcon from '../images/icon.png';
 
 // MUI Stuff
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 const styles = {
   form: {
     textAlign: 'center'
-  }
+  },
+  image: '20px auto 20px auto'
 };
 
 export class login extends Component {
@@ -18,7 +21,10 @@ export class login extends Component {
       <Grid container className={classes.form}>
         <Grid item sm />
         <Grid item sm>
-          <p>Yoooooo</p>
+          <img src={AppIcon} alt="react" className={classes.image} />
+          <Typography variant="h2" className={classes.pageTitle}>
+            Login
+          </Typography>
         </Grid>
         <Grid item sm />
       </Grid>
