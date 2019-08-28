@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
+import Link from 'react-router-dom/Link';
 
 // MUI Stuff
 import Card from '@material-ui/core/Card';
@@ -23,7 +24,7 @@ class Scream extends Component {
           image={userImage}
           title="Profile image" />
         <CardContent>
-          <Typography variant="h5">{userHandle}</Typography>
+          <Typography variant="h5" component={Link} to={`/users/${userHandle}`} color="primary">{userHandle}</Typography>
           <Typography variant="body2" color="textSecondary">{createdAt}</Typography>
           <Typography variant="body1">{body}</Typography>
         </CardContent>
