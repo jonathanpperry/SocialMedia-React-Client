@@ -26,29 +26,45 @@ const theme = createMuiTheme({
       dark: '#b22a00',
       contrastText: '#fff'
     }
+  },
+  typography: {
+    useNextVariants: true
   }
 });
 
 class App extends Component {
   render() {
-    return (
-      <MuiThemeProvider theme={theme}>
-        <div className="App">
-          <Router>
-            <Navbar />
-            <div className="container">
-              <Switch>
-                <Route path="/" component={home} />
-                <Route path="/login" component={login} />
-                <Route path="/signup" component={signup} />
-              </Switch>
-            </div>
-          </Router>
-        </div>
-
-      </MuiThemeProvider>
-    );
+    return (<
+            MuiThemeProvider theme={theme} >
+      <
+            div className="App" >
+        <
+            Router >
+          <
+            Navbar />
+          <
+            div className="container" >
+            <
+            Switch >
+              <
+                Route path="/"
+                component={home}
+              /> <
+                Route path="/login"
+                component={login}
+              /> <
+                Route path="/signup"
+                component={signup}
+              /> <
+            /Switch> <
+            /div> <
+            /Router> <
+            /div>
+  
+            <
+            /MuiThemeProvider>
+          );
+      }
   }
-}
-
+  
 export default App;
