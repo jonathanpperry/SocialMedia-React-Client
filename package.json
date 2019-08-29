@@ -4,9 +4,11 @@
     "private": true,
     "dependencies": {
         "@material-ui/core": "^4.3.3",
+        "@material-ui/icons": "^4.2.1",
         "axios": "^0.19.0",
         "dayjs": "^1.8.16",
         "jwt-decode": "^2.2.0",
+        "material-ui": "^1.0.0-beta.47",
         "react": "^16.9.0",
         "react-dom": "^16.9.0",
         "react-redux": "^7.1.1",
@@ -36,5 +38,5 @@
             "last 1 safari version"
         ]
     },
-    "proxy": "https://asia-northeast1-socialape-710af.cloudfunctions.net/api"
+    "proxy": "https://europe-west1-socialape-d081e.cloudfunctions.net/api"
 }
