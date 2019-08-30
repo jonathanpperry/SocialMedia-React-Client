@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
+import EditDetails from './EditDetails';
 
 // MUI stuff
 import Button from "@material-ui/core/Button";
@@ -31,11 +32,14 @@ class Profile extends Component {
     const formData = new FormData();
     formData.append('image', image, image.name);
     this.props.uploadImage(formData);
-  }
+  };
   handleEditPicture = () => {
     const fileInput = document.getElementById('imageInput');
     fileInput.click();
-  }
+  };
+  handleLogout = () => {
+    this.props.logoutUser();
+  };
   render() {
     const {
       classes,
@@ -91,6 +95,11 @@ class Profile extends Component {
               <CalendarToday color="primary" />{" "}
               <span>Joined {dayjs(createdAt).format("MMM YYYY")}</span>
             </div>
+            <Tooltip title="Log Out" placement="top">
+              <IconButton onClick={this.handleLogout}>
+                <KeyboardReturn color="primary"></KeyboardReturn>
+              </IconButton>
+            </Tooltip>
           </div>
         </Paper>
       ) : (
