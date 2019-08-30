@@ -17,7 +17,7 @@ export class home extends Component {
   render() {
     const { screams, loading } = this.props.data;
     let recentScreamsMarkup = !loading ? (
-      screams.map(scream => <Scream key={scream.screamId} scream={scream} />)
+      screams.map((scream) => <Scream key={scream.screamId} scream={scream} />)
     ) : <p>Loading...</p>
     return (
       <Grid container spacing={16}>
@@ -25,7 +25,7 @@ export class home extends Component {
           {recentScreamsMarkup}
         </Grid>
         <Grid item sm={4} xs={12}>
-          <Profile></Profile>
+          <Profile />
         </Grid>
       </Grid>
     );

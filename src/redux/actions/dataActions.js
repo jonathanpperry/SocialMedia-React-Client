@@ -91,19 +91,19 @@ export const unlikeScream = (screamId) => dispatch => {
 // Submit a comment
 export const submitComment = (screamId, commentData) => (dispatch) => {
     axios.post(`/scream/${screamId}/comment`, commentData)
-    .then(res => {
-        dispatch({
-            type: SUBMIT_COMMENT,
-            payload: res.data
+        .then(res => {
+            dispatch({
+                type: SUBMIT_COMMENT,
+                payload: res.data
+            });
+            dispatch(clearErrors());
+        })
+        .catch(err => {
+            dispatch({
+                type: SET_ERRORS,
+                payload: err.response.data
+            });
         });
-        dispatch(clearErrors());
-    })
-    .catch(err => {
-        dispatch({
-            type: SET_ERRORS,
-            payload: err.response.data
-        });
-    });
 };
 
 export const deleteScream = (screamId) => (dispatch) => {
@@ -112,6 +112,23 @@ export const deleteScream = (screamId) => (dispatch) => {
             dispatch({ type: DELETE_SCREAM, payload: screamId })
         })
         .catch(err => console.log(err));
+}
+
+export const getUserData = (userHandle) => dispatch => {
+    dispatch({ type: LOADING_DATA });
+    axios.get(`/user/${userHandle}`)
+        .then(res => {
+            dispatch({
+                type: SET_SCREAMS,
+                payload: res.data.screams
+            });
+        })
+        .catch(() => {
+            dispatch({
+                type: SET_SCREAMS,
+                payload: null
+            })
+        })
 }
 
 export const clearErrors = () => dispatch => {
