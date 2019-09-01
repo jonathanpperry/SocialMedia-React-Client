@@ -1,66 +1,40 @@
-import React, { Component } from "react";
-import withStyles from "@material-ui/core/styles/withStyles";
-import PropTypes from "prop-types";
-import AppIcon from "../images/icon.png";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import withStyles from '@material-ui/core/styles/withStyles';
+import PropTypes from 'prop-types';
+import AppIcon from '../images/icon.png';
+import { Link } from 'react-router-dom';
 
 // MUI Stuff
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
+// Redux stuff
+import { connect } from 'react-redux';
+import { signupUser } from '../redux/actions/userActions';
 
-// Redux
-import { connect } from "react-redux";
-import { signupUser } from "../redux/actions/userActions";
-
-const styles = {
-  form: {
-    textAlign: "center"
-  },
-  image: {
-    margin: "20px auto 20px auto"
-  },
-  pageTitle: {
-    margin: "10px auto 10px auto"
-  },
-  textField: {
-    margin: "10px auto 10px auto"
-  },
-  button: {
-    marginTop: 20,
-    position: "relative"
-  },
-  customError: {
-    color: "red",
-    fontSize: "0.8rem",
-    marginTop: 10
-  },
-  progress: {
-    position: "absolute"
-  }
-};
+const styles = (theme) => ({
+  ...theme
+});
 
 class signup extends Component {
   constructor() {
     super();
     this.state = {
-      email: "",
-      password: "",
-      confirmPassword: "",
-      handle: "",
+      email: '',
+      password: '',
+      confirmPassword: '',
+      handle: '',
       errors: {}
     };
   }
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.UI.errors) {
       this.setState({ errors: nextProps.UI.errors });
     }
   }
-
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
     this.setState({
       loading: true
@@ -73,23 +47,25 @@ class signup extends Component {
     };
     this.props.signupUser(newUserData, this.props.history);
   };
-
-  handleChange = event => {
+  handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
     });
   };
-
   render() {
-    const { classes, UI: {loading} } = this.props;
+    const {
+      classes,
+      UI: { loading }
+    } = this.props;
     const { errors } = this.state;
+
     return (
       <Grid container className={classes.form}>
         <Grid item sm />
         <Grid item sm>
-          <img src={AppIcon} alt="react" className={classes.image} />
+          <img src={AppIcon} alt="monkey" className={classes.image} />
           <Typography variant="h2" className={classes.pageTitle}>
-            Sign Up
+            SignUp
           </Typography>
           <form noValidate onSubmit={this.handleSubmit}>
             <TextField
@@ -97,7 +73,7 @@ class signup extends Component {
               name="email"
               type="email"
               label="Email"
-              className={classes.classField}
+              className={classes.textField}
               helperText={errors.email}
               error={errors.email ? true : false}
               value={this.state.email}
@@ -109,7 +85,7 @@ class signup extends Component {
               name="password"
               type="password"
               label="Password"
-              className={classes.classField}
+              className={classes.textField}
               helperText={errors.password}
               error={errors.password ? true : false}
               value={this.state.password}
@@ -121,8 +97,8 @@ class signup extends Component {
               name="confirmPassword"
               type="password"
               label="Confirm Password"
-              className={classes.classField}
-              helperText={errors.password}
+              className={classes.textField}
+              helperText={errors.confirmPassword}
               error={errors.confirmPassword ? true : false}
               value={this.state.confirmPassword}
               onChange={this.handleChange}
@@ -133,14 +109,13 @@ class signup extends Component {
               name="handle"
               type="text"
               label="Handle"
-              className={classes.classField}
+              className={classes.textField}
               helperText={errors.handle}
               error={errors.handle ? true : false}
               value={this.state.handle}
               onChange={this.handleChange}
               fullWidth
             />
-
             {errors.general && (
               <Typography variant="body2" className={classes.customError}>
                 {errors.general}
@@ -153,14 +128,14 @@ class signup extends Component {
               className={classes.button}
               disabled={loading}
             >
-              Sign Up
+              SignUp
               {loading && (
                 <CircularProgress size={30} className={classes.progress} />
               )}
             </Button>
             <br />
             <small>
-              Already have an account? Log in <Link to="/login">here</Link>
+              Already have an account ? Login <Link to="/login">here</Link>
             </small>
           </form>
         </Grid>
@@ -177,7 +152,7 @@ signup.propTypes = {
   signupUser: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: state.user,
   UI: state.UI
 });

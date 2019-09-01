@@ -6,9 +6,9 @@ import {
   LIKE_SCREAM,
   UNLIKE_SCREAM,
   MARK_NOTIFICATIONS_READ
-} from "../types";
+} from '../types';
 
-const initalState = {
+const initialState = {
   authenticated: false,
   loading: false,
   credentials: {},
@@ -16,7 +16,7 @@ const initalState = {
   notifications: []
 };
 
-export default function (state = initalState, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case SET_AUTHENTICATED:
       return {
@@ -24,7 +24,7 @@ export default function (state = initalState, action) {
         authenticated: true
       };
     case SET_UNAUTHENTICATED:
-      return initalState;
+      return initialState;
     case SET_USER:
       return {
         authenticated: true,
@@ -46,15 +46,16 @@ export default function (state = initalState, action) {
             screamId: action.payload.screamId
           }
         ]
-      }
+      };
     case UNLIKE_SCREAM:
       return {
         ...state,
-        likes: state.likes.filter(like => like.screamId !== action.payload.screamId
+        likes: state.likes.filter(
+          (like) => like.screamId !== action.payload.screamId
         )
-      }
+      };
     case MARK_NOTIFICATIONS_READ:
-      state.notifications.forEach(not => not.read = true);
+      state.notifications.forEach((not) => (not.read = true));
       return {
         ...state
       };
